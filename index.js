@@ -1,52 +1,59 @@
-function printString(myString) {
-  console.log(myString[0]);
+function printString(string){
+  console.log(string[0])
+  
+  if (string.length<1){
+    return string
+  }
+  
+  let sub = string.substring(1)
+  return printString(sub)
 
-  if (myString.length > 1) {
-    let mySubString = myString.substring(1, myString.length);
-    printString(mySubString);
+}
+
+function reverseString(string){
+  if (string.length <1) return string
+
+  return reverseString(string.substring(1)) + string[0]
+
+}
+
+function isPalindrome(string){
+  if (string.length<2)return true
+  if (string[0] == string[string.length-1]){
+    string = string.substring(1,string.length-1)
+    return isPalindrome(string)
   } else {
-    return true;
+    return false
   }
 }
 
-function reverseString(myString) {
-  if (myString.length < 2) {
-    return myString;
-  } else {
-    return reverseString(myString.substring(1)) + myString[0];
+function addUpTo(array, index){
+  if (index == 0) return array[0]
+
+  let newArray = array.slice(1)
+
+  return array[0] + addUpTo(newArray, index - 1)
+}
+
+function maxOf(array, max=0){
+  if (array[0] > max) {
+    max = array[0]
   }
-}
 
-function isPalindrome(myString) {
-  let l = myString.length;
-
-  if (l < 2) {
-    return true;
-  } else if (myString[l - 1] === myString[0]) {
-    return isPalindrome(myString.substring(1, l - 1));
-  } else {
-    return false;
+  if (array.length === 0){
+    return max
   }
+
+  return maxOf(array.slice(1), max) 
 }
 
-function addUpTo(myArray, index) {
-  return index ? myArray[index] + addUpTo(myArray, --index) : myArray[index];
+function includesNumber(array, number){
+  if (array[0]===number) return true
+  if (array.length === 0) return false
+
+  return includesNumber(array.slice(1), number)
 }
 
-function maxOf(myArray) {
-  if (myArray.length === 1) {
-    return myArray[0];
-  } else {
-    return Math.max(myArray.pop(), maxOf(myArray));
-  }
-}
+includesNumber([1,2,3,4,5], 6)
+includesNumber([1,2,3,4,5], 3)
 
-function includesNumber(myArray, myNumber) {
-  if (!myArray.length) {
-    return false;
-  } else if (myArray[0] === myNumber) {
-    return true;
-  } else {
-    return includesNumber(myArray.slice(1), myNumber);
-  }
-}
