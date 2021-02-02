@@ -1,5 +1,6 @@
 // Code your solution here!
 
+// Write a recursive function to print out all of the characters in a string.
 function printString(str){
     console.log(str[0])
     if(str.length > 1){
@@ -11,7 +12,8 @@ function printString(str){
 
 }
 
-// printAll("pizza");
+
+// Write out a recursive function to reverse a string.
 
 function reverseString(str){
     // get the last character of the string and add it to a new string variable
@@ -23,6 +25,7 @@ function reverseString(str){
     
 }
 
+// Write out a recursive function to see if a word is a palindrome.
 function isPalindrome(str){
 
     let l = str.length
@@ -35,9 +38,30 @@ function isPalindrome(str){
         return false;         
     }
 }
-    
 
+ 
+// Given an array and an index, write a recursive function to add up the elements of an array.
+function addUpTo(arr, index){
+    return index ? arr[index] + addUpTo(arr, --index) : arr[index];
+}
 
+// Write a recursive function to find the largest integer in an array.
+function maxOf(arr){
+    if(arr.length === 1){
+        return arr[0]
+    }else {
+        return Math.max(arr.pop(), maxOf(arr))
+    }
+}
 
-
+// Write out a function to see if an array includes a given element.
+function includesNumber(arr, element){
+    if(!arr.length){
+        return false;
+    } else if(arr[0] === element){
+        return true;
+    }  else {
+        return includesNumber(arr.slice(1), element)
+    }
+}
 
